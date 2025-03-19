@@ -24,6 +24,16 @@ for its play. There are options to factor in some random moves even when
 a specific move exists in its move data, as well as random moves for the
 cases when the move doesn't exist in the data.
 
+## Running the Application
+
+In a command prompt where Python 3 is available (named 'python3'):
+>`python3 ChopStix.py`
+
+On Windows, Python3 might be just 'python'. Test by using the command:
+>`python -V`
+If this lists a 3.x version, use:
+>`python ChopStix.py`
+
 ## Learning Python
 
 The goal of this application is to provide a (hopefully) fun way to read
