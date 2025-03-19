@@ -1,0 +1,25 @@
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+core
+
+# Ignore log files
+*.log
+*.out
+
+# temporary
+~$*.*
+*.bak
+
+# Ignore Python cache
+__pycache__/
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore environment variable files
+.env
+
+# Ignore 'test' programs. If test programs are needed, include them with a '!' line
+_test*.py
