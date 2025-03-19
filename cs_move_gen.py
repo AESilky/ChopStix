@@ -4,9 +4,10 @@ SPDX-License-Identifier: MIT License
 """
 
 """
-cs_strategy.py
+cs_move_gen.py
 
-This file contains the strategy to play, and hopefully win, the game of ChopStix.
+This file contains the move generation logic to play, and hopefully win,
+the game of ChopStix.
 
 It contains some parameters that allow it to be better or randomly average.
 """
