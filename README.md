@@ -59,3 +59,15 @@ As is typical with applications with some amount of complexity, this
 application is split between multiple files. Hopefully the split makes sense
 to those perusing the code. The Python file containing the 'main' method
 starts with an uppercase letter, while the non-main files are lowercase.
+
+## Code Updates
+
+Since one of the goals is to provide an application that can be used for
+learning/training, updates that implement the TODOs will most likely
+not be incorporated into the main branch. Different approaches to the
+TODOs might be put into easily identified branches.
+
+If there are changes that would make the learning/training aspect better,
+they will be considered for inclusion in the main branch.
+
+Please keep this in mind if you submit a PR.
