@@ -41,6 +41,7 @@ import sys
 import traceback  # This is kind of advanced - but I'll use it so you see how it can be used.
 
 def main():
+    # TODO: Process command-line options to allow setting the randomness of the move generator.
     print("\nWelcome to the game of ChopStix.")  # The '\n' prints a new line
     print("It is an interesting math challenge between you and me.")
     print("")
