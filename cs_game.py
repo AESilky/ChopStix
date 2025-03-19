@@ -12,7 +12,7 @@ well as the high-level start/play/finish flow.
 import cs_exceptions as cse  # This imports everything with an alias of 'cse'
 from cs_hands import Hand, Hands  # This specifically imports classes that we will use
 from cs_score import Score  # Specific class
-from cs_strategy import Strategy  # The game play strategy
+from cs_move_gen import MoveMaster  # The game play strategy
 
 import math  # Used for calculating the number of digits that will be displayed for stats
 import time  # Used for sleeping. No alias is specified, so use will be 'time.xxx'
@@ -121,7 +121,7 @@ class Game:
         """
         Play the game.
         """
-        game_strategy = Strategy()
+        game_strategy = MoveMaster()
         playing = True
         self._score.start_game()
         self._moves_this_game = 0

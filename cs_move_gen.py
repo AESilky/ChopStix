@@ -22,7 +22,7 @@ class YesNoMaybe(IntEnum):
     YES      = 1
     MAYBE    = -1
 
-class Strategy:
+class MoveMaster:
     """
     Contains the parameters that control how aggressively the moves generated
     try to win.
