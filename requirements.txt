@@ -1,0 +1,19 @@
+# ChopStix is written to not require anything beyond the core distribution
+# of Python3.
+#
+# This 'requirements.txt' file is included to make the student aware of how
+# is would be used if the application had any dependencies.
+#
+# Running: `pip install -r requirements.txt`
+# would add the listed packages into the Python environment.
+# (it is suggested that you work with a virtual environment)
+#
+# If you implement the 'TODOs' and require additional packages for the
+# implementation, practice using 'requirements.txt' by generating your
+# requirements into a file:
+# `pip freeze > requirements.txt`
+#
+# Then try creating a new environment using it to make sure it works.
+# Try your version with a plain Python3 environment first to see that it
+# fails and then use your 'requirements.txt' to see that it works.
+#

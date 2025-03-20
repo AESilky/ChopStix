@@ -17,7 +17,7 @@ from cs_move_gen import MoveMaster  # The game play strategy
 import math  # Used for calculating the number of digits that will be displayed for stats
 import time  # Used for sleeping. No alias is specified, so use will be 'time.xxx'
 
-__version__ = '1.0.0'  # Version information for this module (this is a 'special' value in Python)
+__version__ = '1.0.1'  # Version information for this module (this is a 'special' value in Python)
 
 # Values that are intended to be constants use all caps (by convention)
 #
