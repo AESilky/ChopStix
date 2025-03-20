@@ -141,6 +141,8 @@ class MoveMaster:
         """
         Generate a random move. Optionally, include split.
 
+        Though it is intended to be random, if the 'from' can win, do it!
+
         Parameters:
             from_hands: The hands the fingers are coming from.
             to_hands: The hands being tapped.
@@ -148,8 +150,11 @@ class MoveMaster:
 
         Return: String of "LL", "LR", "RL", or "RR", or "S" if split is allowed
         """
-        move = None
         self._rndmoves += 1
+        # See if 'from' can win...
+        move = self._winning_move(from_hands, to_hands)
+        if not move is None:
+            return move
         # If split is allowed, use our 'favor_split' to pick a split or not
         if split_allowed and self._random_split():
             if self._random_split():
@@ -189,26 +194,57 @@ class MoveMaster:
     def _should_split(self, from_hands, to_hands):  # type: (Hands, Hands) -> YesNoMaybe
         if from_hands.can_split():
             # Well, we can split... should we?
+            from_fingers = from_hands.left.fingers + from_hands.right.fingers  # One hand is 0, so this gives us the fingers
+            # See if we can win now if we don't split
+            if to_hands.left.is_fist() or to_hands.right.is_fist():
+                if from_fingers + to_hands.left.fingers + to_hands.right.fingers == 5:
+                    # We can win. Our 'get_move' logic will figure out how.
+                    return YesNoMaybe.NO
             # See if they can win if we don't split
-            from_fingers = from_hands.left.fingers + from_hands.right.fingers  # One is 0, so this gives us the hand with fingers
             if from_fingers + to_hands.left.fingers == 5 or from_fingers + to_hands.right.fingers == 5:
                 # If we don't split they can win on their next move!
                 return YesNoMaybe.YES
             else:
-                # See if we can win now if we don't split
-                if to_hands.left.is_fist() or to_hands.right.is_fist():
-                    if from_fingers + to_hands.left.fingers + to_hands.right.fingers == 5:
-                        # We can win. Our 'get_move' logic will figure out how.
-                        return YesNoMaybe.NO
                 # We can split, but we won't lose if we don't and we won't can't win if we don't
                 return YesNoMaybe.MAYBE  # Let the 'move' logic figure out what to do
         return YesNoMaybe.NO  # We can't split
+
+    def _winning_move(self, from_hands, to_hands):  # type: (Hands,Hands) -> str|None
+        """
+        Generate a winning move if possible.
+
+        Parameters:
+            from_hands: The hands the fingers are coming from.
+            to_hands: The hands being tapped.
+        Returns:
+            str - Winning move if possible
+            None - Win isn't currently possible
+        """
+        move = None
+        if to_hands.left.is_fist() or to_hands.right.is_fist():
+            # Only one hand has fingers, so see if a win is possible.
+            to_fingers = to_hands.left.fingers + to_hands.right.fingers
+            if to_fingers + from_hands.left.fingers == 5 or to_fingers + from_hands.right.fingers == 5:
+                # A win is possible, see what move does it.
+                to_move = 'L' if to_hands.right.is_fist() else 'R'
+                from_move = 'L' if from_hands.left.fingers + to_fingers == 5 else 'R'
+                move = from_move + to_move
+        return move
 
     #
     # Following are the methods intended to be called from outside of the class (no leading underscore)
     #
 
     def get_move(self, from_hands, to_hands):  # type: (Hands, Hands) -> str
+        """
+        Generate a move.
+
+        Parameters:
+            from_hands: The hands the fingers are coming from.
+            to_hands: The hands being tapped.
+        Returns:
+            move (S, LL, LR, RL, RR)
+        """
         move = None
         self._moves += 1
         # First, see if we can/should split...
