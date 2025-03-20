@@ -143,6 +143,7 @@ class Game:
                     # TODO: Implement 'new game'
                     # zzz: Implement giving them 'help'
                     # TODO: Implement a way for them to ask for a suggestion.
+                    # TODO: Implement a way to ask how the computer's move was determined (S,Table,Random)
                     else:  # Treat it as a move
                         try:
                             self.move(self._them, self._us, su)
@@ -162,7 +163,7 @@ class Game:
                 # Our turn...
                 move = game_strategy.get_move(self._us, self._them)
                 time.sleep(LONG_PAUSE)
-                print("\n\nMy move is: {}".format(move))
+                print("\n\n>>> My move is: {}".format(move))
                 self.move(self._us, self._them, move)
                 their_move = True
                 if self.we_won_check():
@@ -179,10 +180,13 @@ class Game:
 
         If they did, update the score and congratulate them.
 
-        Return: True if they won. False if they didn't
+        Returns:
+            True if they won.
+            False if they didn't
         """
         if self._us.left.is_fist() and self._us.right.is_fist():
             self._score.team_b_won()
+            # TODO: Pick from a variety of messages to say they win.
             print("Congratulations, you won! It took {} moves".format(self._moves_this_game))
             return True  # I like to only have a single return point (at the end)
                             # but some programmers use multiple - like this.
@@ -199,6 +203,7 @@ class Game:
         rv = False  # This will be the return value (for a single return statement)
         if self._them.left.is_fist() and self._them.right.is_fist():
             self._score.team_a_won()
+            # TODO: Pick from a variety of messages to say we win.
             print("I win, I win!!! Oh, sorry that you lost. It took {} moves".format(self._moves_this_game))
             rv = True
         return rv
