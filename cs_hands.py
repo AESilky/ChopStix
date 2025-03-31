@@ -19,32 +19,32 @@ class Hand:
     # '__init__' (notice that is has two leading and two trailing underscores)
     # is a special method for classes (there are a few). It is called automatically
     # when an instance of the class is created.
-    def __init__(self):  # type: (int) -> None
-        self._fingers = 1   # I use a leading underscore for class variables to indicate
-                            # they shouldn't be changed outside of the class.
+    def __init__(self) -> None:
+        self._fingers:int = 1   # I use a leading underscore for class variables to indicate
+                                # they shouldn't be changed outside of the class.
         return
 
     @property
-    def fingers(self):  # type: (None) -> int
+    def fingers(self) -> int:
         """
         The number of fingers out
         """
         return self._fingers
 
-    def add_hand(self, other):  # type: (Hand) -> int
+    def add_hand(self, other: 'Hand') -> int:
         """
         Adds the fingers of the passed in hand to this hand.
         """
         self._fingers = (self.fingers + other.fingers) % 5
         return self.fingers
 
-    def is_fist(self):  # type: (None) -> bool
+    def is_fist(self) -> bool:
         """
         Return True if no fingers are out.
         """
         return (self._fingers == 0)
 
-    def split_to_other_hand(self, other_hand):  # type: (Hand) -> None
+    def split_to_other_hand(self, other_hand: 'Hand') -> None:
         """
         Splits the fingers of this hand to the other.
 
@@ -68,20 +68,20 @@ class Hands:
     Holds two hands, left and right. Provides some operations on the pair.
     """
 
-    def __init__(self):  # type: (None) -> None
-        self._left = Hand()     # type: Hand
-        self._right = Hand()    # type: Hand
+    def __init__(self) -> None:
+        self._left:'Hand' = Hand()
+        self._right: 'Hand' = Hand()
         return
 
     @property
-    def left(self):  # type: (None) -> Hand
+    def left(self) -> 'Hand':
         return self._left
 
     @property
-    def right(self):  # type: (None) -> Hand
+    def right(self) -> 'Hand':
         return self._right
 
-    def can_split(self):  # type: (None) -> bool
+    def can_split(self) -> bool:
         """
         Check if the hands can be split.
         True: They can
@@ -99,7 +99,7 @@ class Hands:
                 can = True
         return can
 
-    def split(self):  # type: (None) -> None
+    def split(self) -> None:
         if self._left.fingers == 0:
             self._right.split_to_other_hand(self._left)
         else:

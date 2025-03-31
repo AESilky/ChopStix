@@ -9,5 +9,6 @@
         "rndsplit",
         "rndsplits",
         "Stix"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "strict"
 }
