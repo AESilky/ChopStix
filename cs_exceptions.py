@@ -22,13 +22,13 @@ class MoveNotAllowed(Exception):
     """
     Indicates that the move isn't possible given the hands.
     """
-    def __init__(self, reason):  # type: (str) -> None
+    def __init__(self, reason:str) -> None:
         self._reason = reason
         super().__init__(self._reason)
         return
 
     @property
-    def reason(self):  # type: (None) -> str
+    def reason(self) -> str:
         """
         The reason the move is not allowed.
         """

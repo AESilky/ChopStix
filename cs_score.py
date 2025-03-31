@@ -14,25 +14,25 @@ class Score:
     Keeps score for us and them.
     """
 
-    def __init__(self):  # type: (None) -> None
-        self._team_a = 0    # type: int
-        self._team_b = 0    # type: int
-        self._games = 0     # type: int
+    def __init__(self) -> None:
+        self._team_a:int = 0
+        self._team_b:int = 0
+        self._games:int = 0
         return
 
     @property
-    def team_a(self):  # type: (None) -> int
+    def team_a(self) -> int:
         return self._team_a
 
     @property
-    def team_b(self):  # type: (None) -> int
+    def team_b(self) -> int:
         return self._team_b
 
     @property
-    def games(self):  # type: (None) -> int
+    def games(self) -> int:
         return self._games
 
-    def start_game(self):  # type: (None) -> None
+    def start_game(self) -> None:
         """
         Increment the number of games and clear the scores.
         """
@@ -41,14 +41,14 @@ class Score:
         self._games += 1
         return
 
-    def team_a_won(self):  # type: (None) -> None
+    def team_a_won(self) -> None:
         """
         Increment Team A's score.
         """
         self._team_a += 1
         return
 
-    def team_b_won(self):  # type: (None) -> None
+    def team_b_won(self) -> None:
         """
         Increment Team B's score.
         """

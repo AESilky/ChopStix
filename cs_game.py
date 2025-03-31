@@ -10,7 +10,7 @@ This file contains the classes that implement the logic of the game, as
 well as the high-level start/play/finish flow.
 """
 import cs_exceptions as cse  # This imports everything with an alias of 'cse'
-from cs_hands import Hand, Hands  # This specifically imports classes that we will use
+from cs_hands import Hands  # This specifically imports classes that we will use
 from cs_score import Score  # Specific class
 from cs_move_gen import MoveMaster  # The game play strategy
 
@@ -28,7 +28,7 @@ LONG_PAUSE = 1.3    # Number of seconds to pause for a long break.
 # that I follow (and many others do too).
 
 
-def display_hands(us, them):  # type: (Hands, Hands) -> None
+def display_hands(us: 'Hands', them: 'Hands'):
     """
     Displays a representation of four hands, two from each player.
 
@@ -38,10 +38,10 @@ def display_hands(us, them):  # type: (Hands, Hands) -> None
 
     Note: Notice that this is a 'module method', as it isn't part of a class.
     """
-    our_left_fingers = (' ' * (4 - us.left.fingers)) + ('I' * us.left.fingers)
-    our_right_fingers = 'I' * us.right.fingers
-    their_left_fingers = (' ' * (4 - them.left.fingers)) + ('I' * them.left.fingers)
-    their_right_fingers = 'I' * them.right.fingers
+    our_left_fingers:str = (' ' * (4 - us.left.fingers)) + ('I' * us.left.fingers)
+    our_right_fingers:str = 'I' * us.right.fingers
+    their_left_fingers:str = (' ' * (4 - them.left.fingers)) + ('I' * them.left.fingers)
+    their_right_fingers:str = 'I' * them.right.fingers
     print("  |  |>    <|  |  [My Hands]")
     print("  wwww      wwww")
     print("  {}      {}".format(our_left_fingers, our_right_fingers))
@@ -51,9 +51,9 @@ def display_hands(us, them):  # type: (Hands, Hands) -> None
     print("  |  |>    <|  |  [Your Hands]")
     return
 
-def display_stats(moves, rnd_moves, rnd_splits):  # type: (int,int,int) -> None
+def display_stats(moves:int, rnd_moves:int, rnd_splits:int) -> None:
     """
-    Display (print) statistics about the gaem.
+    Display (print) statistics about the game.
 
     Parameters:
         moves: The number of moves (total)
@@ -71,14 +71,14 @@ class Game:
     Implements the start/play/finish flow.
     """
 
-    def __init__(self):  # type: (None) -> None
-        self._us = Hands()          # type: Hands  # Create an instance of a hands for us
-        self._them = Hands()        # type: Hands  # and them
-        self._score = Score()       # type: Score
-        self._moves_this_game = 0   # type: int
+    def __init__(self) -> None:
+        self._us:'Hands' = Hands()      # Create an instance of a hands for us
+        self._them:'Hands' = Hands()    # and them
+        self._score:'Score' = Score()
+        self._moves_this_game:int = 0
         return
 
-    def move(self, from_hands, to_hands, move_cmd):  # type: (Hands, Hands, str) -> None
+    def move(self, from_hands:'Hands', to_hands:'Hands', move_cmd:str) -> None:
         """
         Process the move command and move from the 'from hands' to the 'to hands'.
 
@@ -117,11 +117,11 @@ class Game:
             raise cse.InvalidMoveCmd(move_cmd)
         return
 
-    def play(self):  # type: (None) -> None
+    def play(self) -> None:
         """
         Play the game.
         """
-        game_strategy = MoveMaster()
+        game_strategy:'MoveMaster' = MoveMaster()
         playing = True
         self._score.start_game()
         self._moves_this_game = 0
@@ -174,7 +174,7 @@ class Game:
         display_stats(game_strategy.moves, game_strategy.random_moves, game_strategy.random_splits)
         return
 
-    def they_won_check(self):  # type: (None) -> bool
+    def they_won_check(self) -> bool:
         """
         Check to see if they won.
 
@@ -192,7 +192,7 @@ class Game:
                             # but some programmers use multiple - like this.
         return False
 
-    def we_won_check(self):  # type: (None) -> bool
+    def we_won_check(self) -> bool:
         """
         Check to see if we won.
 

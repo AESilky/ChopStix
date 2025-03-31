@@ -13,7 +13,7 @@ This file contains the (static) main text for the app.
 # code, they need to be defined before they are used, so that dictates the order to
 # some extent.
 
-def help():  # type: () -> None  ## This is 'type info' it lets the IDE know what the method takes and what it returns. Not required, but helpful.
+def help() -> None:  # The `-> None` is a 'type annotation' it lets the IDE know what the method takes and what it returns. Not required, but helpful.
     """
     Prints a description of the game.
     """
@@ -32,7 +32,7 @@ def help():  # type: () -> None  ## This is 'type info' it lets the IDE know wha
         + "turn (to tap or split).\n")
     return  # Technically, not needed. But I like to include it to make the end clear.
 
-def options(show_split=False, show_new=False, show_quit=False):  # type: (bool,bool,bool) -> None
+def options(show_split:bool=False, show_new:bool=False, show_quit:bool=False) -> None:  # `:bool` are also 'type annotations`
     """
     Prints the options available to the user.
     """
@@ -53,7 +53,7 @@ def options(show_split=False, show_new=False, show_quit=False):  # type: (bool,b
     print(t)
     return
 
-def intro():  # type: () -> None
+def intro() -> None:
     """
     Displays an introduction of the game and how it's played.
     """

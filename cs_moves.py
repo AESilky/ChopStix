@@ -21,7 +21,7 @@ If a move isn't found for the criteria a random move should be selected.
 # Don't bother putting in combinations where their isn't a choice or
 # difference, the random selection algorithm will handle those.
 #
-MOVES = (
+MOVES:tuple[tuple[tuple[int,int],tuple[tuple[tuple[int,int],str],...]],...] = (  # Tricky/complex annotation.
     (
         (1,0),(
             ((4,0),"LL"), # For the win

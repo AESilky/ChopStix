@@ -46,7 +46,7 @@ def main():
     print("It is an interesting math challenge between you and me.")
     print("")
     msgs.intro()
-    game = Game()
+    game:'Game' = Game()  # `:'Game'` is a 'type annotation'. These are more advanced, and not required.
     game.play()
     return  # Technically, not needed. But I like to include it to make the end clear.
 
